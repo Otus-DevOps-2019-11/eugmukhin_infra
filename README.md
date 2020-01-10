@@ -21,3 +21,10 @@ gcloud compute instances create reddit-app\
   --tags puma-server \
   --restart-on-failure \
   --metadata-from-file startup-script=startup.sh
+
+## Команда создания правила фаервола
+gcloud compute firewall-rules create default-puma-server \
+  --action allow \
+  --target-tags puma-server \
+  --source-ranges=0.0.0.0/0 \
+  --rules tcp:9292
