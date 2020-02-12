@@ -68,3 +68,8 @@ resource "google_compute_firewall" "firewall_puma" {
   # Правило применимо для инстансов с перечисленными тэгами
   target_tags = ["reddit-app"]
 }
+
+resource "google_compute_project_metadata_item" "default" {
+  key   = "ssh-keys"
+  value = "appuser1:${file(var.public_key_path)}\n appuser2:${file(var.public_key_path)}"
+}
