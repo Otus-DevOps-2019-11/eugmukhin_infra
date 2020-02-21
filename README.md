@@ -29,10 +29,10 @@ gcloud compute firewall-rules create default-puma-server \
   --source-ranges=0.0.0.0/0 \
   --rules tcp:9292
 
-## Домашние задание №4
--- Скрипты startup.sh и deploy.sh перенесены в папку config-scripts
--- Добавлен шаблон ubuntu16.json с инструкциями для packer по сборке образа семейства reddit-base
--- Выполнена параметризация шаблона ubuntu16.json.
+## Домашние задание №5
+- Скрипты startup.sh и deploy.sh перенесены в папку config-scripts
+- Добавлен шаблон ubuntu16.json с инструкциями для packer по сборке образа семейства reddit-base
+- Выполнена параметризация шаблона ubuntu16.json.
     project_id - ID проекта (обязательно)
     source_image_famaly - Семейство исходного образа
     machine_type - Тип машины
@@ -41,9 +41,29 @@ gcloud compute firewall-rules create default-puma-server \
     disk_type - Тип диска
     network - Название сети
     tags - Теги
--- В шаблон ubuntu16.json добавлены инструкции на выполнения инсталяционных скриптов Ruby и MongoDB - install_mongodb.sh и install_ruby.sh
--- Параметры обязательных переменных project_id и source_image_famaly для шаблона ubuntu16.json вынесены в файл variables.json
--- Файл variables.json добавлен в .gitignore
--- В файл variables.json.example добавлены примеры значений обезательных переменых project_id и source_image_famaly
--- Добавлен шаблон immutable.json для сборки образа семейства reddit-full с автозапуском приложения reddit-app
--- Добавлен скрипт create-redditvm.sh для создания VM из образа семейства reddit-full
+- В шаблон ubuntu16.json добавлены инструкции на выполнения инсталяционных скриптов Ruby и MongoDB - install_mongodb.sh и install_ruby.sh
+- Параметры обязательных переменных project_id и source_image_famaly для шаблона ubuntu16.json вынесены в файл variables.json
+- Файл variables.json добавлен в .gitignore
+- В файл variables.json.example добавлены примеры значений обезательных переменых project_id и source_image_famaly
+- Добавлен шаблон immutable.json для сборки образа семейства reddit-full с автозапуском приложения reddit-app
+- Добавлен скрипт create-redditvm.sh для создания VM из образа семейства reddit-full
+
+## Домашние задание №6
+### Практика
+- Установили и настроили Terraform
+- Описали конфиграцию виртульной машины и создали ее
+- Настроили покдлючение по ssh
+- Вынесли часть параметров в переменные
+- Добавили настройки фаервола
+- Добавили провижинеры для деплоя приложения reddit-app
+
+### Сомастоятельная работа
+- Определили input переменную для приватного ключа
+- Определили input переменную для задания зоны
+- Отформатировали все конфигурационные файлы
+- Добавили файл terraform.tfvars.example
+
+### Задание*
+- В метаданные проекта добавили ssh ключ для пользователя appuser1
+- В метаданные проекта добавили ssh ключи для нескольких пользователей: appuser1 и appuser2
+- Добавили в веб интерфейсе ssh ключ пользователю appuser_web в метаданные проекта, выполнили terraform apply и обноружили, что Terraform затирает изменения в метаданных проекта, которые не описаны в конфигурационных файлах
